@@ -1,5 +1,5 @@
 ---
-
+import Logo from "./Logo.astro";
 ---
 
 <footer
@@ -10,12 +10,10 @@
     class="w-full max-w-[1240px] mx-auto px-8 grid gap-10 grid-cols-[repeat(auto-fit,minmax(180px,1fr))]"
   >
     <div>
-      <div
-        class="font-semibold text-base tracking-widest flex items-center gap-2 mb-3"
-      >
-        <span
-          class="w-2 h-2 bg-accent-primary rounded-full shadow-[0_0_0_4px_rgba(67,166,129,.25)]"
-        ></span>Flowsurface
+      <div class="mb-3">
+        <a href="#top" aria-label="Flowsurface home" class="inline-flex items-center opacity-85 hover:opacity-100 transition-opacity">
+          <Logo class="h-7" encased />
+        </a>
       </div>
       <p
         class="max-w-[260px] text-text-secondary m-0 text-[0.7rem] leading-[1.4]"
