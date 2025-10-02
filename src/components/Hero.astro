@@ -1,7 +1,8 @@
 ---
-import { Image } from 'astro:assets';
-import heroImg from '../assets/hero.png';
+import { Image } from "astro:assets";
+import heroImg from "../assets/hero.png";
 ---
+
 <section
   class="relative py-[clamp(5.5rem,10vw,9rem)]"
   aria-labelledby="hero-title"
@@ -27,10 +28,10 @@ import heroImg from '../assets/hero.png';
     <p
       class="text-text-secondary max-w-[640px] text-[0.85rem] leading-relaxed font-medium tracking-wide"
     >
-      Real‑time microstructure workstation: historical DOM heatmap,
-      execution footprint clustering, adaptive aggregation, depth ladder &
-      pace audio — processed locally in a transparent Rust core. No vendor
-      lock‑in. You own the edge.
+      Real‑time microstructure workstation: historical DOM heatmap, execution
+      footprint clustering, adaptive aggregation, depth ladder & pace audio —
+      processed locally in a transparent Rust core. No vendor lock‑in. You own
+      the edge.
     </p>
     <div class="flex items-center gap-3 flex-wrap justify-center mt-2">
       <a
@@ -39,7 +40,7 @@ import heroImg from '../assets/hero.png';
         aria-label="Download Flowsurface">Download</a
       >
       <a
-        href="https://github.com/akenshaw/flowsurface"
+        href="https://github.com/flowsurface-rs/flowsurface"
         class="btn btn-secondary"
         target="_blank"
         rel="noopener"
@@ -55,9 +56,7 @@ import heroImg from '../assets/hero.png';
       <a href="#features">See more features ↓</a>
     </div>
     <div class="relative w-full mt-5" aria-hidden="true">
-      <div
-        class="relative rounded-3xl bg-gradient-frame p-[3px] shadow-lg"
-      >
+      <div class="relative rounded-3xl bg-gradient-frame p-[3px] shadow-lg">
         <div
           class="relative rounded-[21px] bg-[#0f1010] min-h-[430px] flex items-center justify-center overflow-hidden shadow-frame-inset"
         >
@@ -67,7 +66,7 @@ import heroImg from '../assets/hero.png';
             class="w-full h-full object-cover block"
             loading="eager"
             format="avif"
-            widths={[480,768,1024,1440,1920]}
+            widths={[480, 768, 1024, 1440, 1920]}
             sizes="(max-width: 1040px) 100vw, 1040px"
           />
         </div>
