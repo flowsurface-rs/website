@@ -1,6 +1,12 @@
 ---
-import { Image } from 'astro:assets';
-import heroImg from '../assets/hero.png';
+
+import heatmapImg from '../assets/features/heatmap.png';
+import footprintImg from '../assets/features/footprint.png';
+import panesImg from '../assets/features/panes.png';
+import tickSizeImg from '../assets/features/tick_size.png';
+import tradesTapeImg from '../assets/features/trades_tape.png';
+import screenerImg from '../assets/features/screener_ohlcv.png';
+import domImg from '../assets/features/dom.png';
 
 interface Feature {
   title: string;
@@ -13,49 +19,49 @@ const features: Feature[] = [
   {
     title: 'Heatmap DOM',
     description: 'Historical bid/ask liquidity with adaptive grouping + optional volume profile overlay.',
-    img: heroImg,
+    img: heatmapImg,
     caption: 'Historical orderbook liquidity over time'
   },
   {
     title: 'Footprint Modes',
     description: 'Cluster trades by time or tick count with imbalance + naked POC studies.',
-    img: heroImg,
+    img: footprintImg,
     caption: 'Execution clustering footprint views'
   },
   {
     title: 'Multi‑Pane Layouts',
     description: 'Link panes & switch instruments instantly while retaining per‑pane state.',
-    img: heroImg,
+    img: panesImg,
     caption: 'Multiple synchronized analysis panes'
   },
   {
     title: 'Adaptive Aggregation',
     description: 'Timeframe or trade‑count (tick) based aggregation for precise tempo control.',
-    img: heroImg,
+    img: tickSizeImg,
     caption: 'Adaptive timeframe & tick aggregation'
   },
   {
     title: 'Realtime Audio',
     description: 'Configurable trade threshold sound cues to surface acceleration.',
-    img: heroImg,
+    img: tradesTapeImg,
     caption: 'Audio cues for acceleration'
   },
   {
     title: 'Multi‑Exchange Support',
     description: 'Binance, Bybit, Hyperliquid & OKX streams (more coming).',
-    img: heroImg,
+    img: screenerImg,
     caption: 'Connect across major derivatives venues'
   },
   {
     title: 'Local & Private',
     description: 'No vendor lock-in. Data streamed directly from exchange public APIs.',
-    img: heroImg,
+    img: domImg,
     caption: 'Local processing & privacy'
   },
   {
     title: 'Low‑Latency Core',
     description: 'Rust zero‑copy dataflow + batched diffed rendering keep median capture→render latency <20ms under burst loads.',
-    img: heroImg,
+    img: domImg,
     caption: 'Low-latency Rust + Iced pipeline'
   }
 ];
@@ -96,6 +102,7 @@ const features: Feature[] = [
             aria-selected="false"
             data-index={i}
             data-caption={f.caption}
+            data-img-src={f.img.src}
           >
             <h3
               class="m-0 mb-[0.35rem] text-[0.95rem] font-semibold tracking-wider"
@@ -119,15 +126,13 @@ const features: Feature[] = [
           <div
             class="relative rounded-[21px] bg-[#0f1010] min-h-[320px] max-[1000px]:min-h-[240px] flex items-center justify-center overflow-hidden shadow-frame-inset"
           >
-            <Image
+            <img
               id="feature-preview-img"
-              src={heroImg}
+              src={heatmapImg.src}
               alt="Feature preview"
               class="w-full h-full object-cover block"
               loading="lazy"
-              format="webp"
-              widths={[480,768,1024,1440]}
-              sizes="(max-width: 480px) 100vw, 480px"
+              decoding="async"
             />
           </div>
         </div>
@@ -141,25 +146,31 @@ const features: Feature[] = [
   <script>
     const featureButtons = [...document.querySelectorAll('[data-feature-ui] [role="tab"]')];
     const captionEl = document.getElementById('feature-caption');
+    const imgEl = document.getElementById('feature-preview-img') as HTMLImageElement;
     let activeIndex = 0;
     if (featureButtons.length) {
-      function activate(i){
+      function activate(i: number){
         featureButtons.forEach((b,idx)=>{
           b.classList.toggle('active', idx===i);
           b.setAttribute('aria-selected', idx===i ? 'true' : 'false');
         });
-        const btn = featureButtons[i];
-        if(btn && captionEl){ captionEl.textContent = btn.dataset.caption || ''; }
+        const btn = featureButtons[i] as HTMLElement;
+        if(btn && captionEl){
+          captionEl.textContent = btn.dataset.caption || '';
+        }
+        if(btn && imgEl && btn.dataset.imgSrc){
+          imgEl.src = btn.dataset.imgSrc;
+        }
         activeIndex = i;
       }
       featureButtons.forEach((b,idx)=>{
         b.addEventListener('click', ()=>activate(idx));
-        b.addEventListener('keydown', (e)=>{
-          if(e.key==='ArrowDown'){ e.preventDefault(); activate((idx+1)%featureButtons.length);} 
-          if(e.key==='ArrowUp'){ e.preventDefault(); activate((idx-1+featureButtons.length)%featureButtons.length);} 
-          if(e.key==='Home'){ e.preventDefault(); activate(0);} 
-          if(e.key==='End'){ e.preventDefault(); activate(featureButtons.length-1);} 
-          if(e.key==='Enter' || e.key===' '){ e.preventDefault(); activate(idx);} 
+        b.addEventListener('keydown', (e: KeyboardEvent)=>{
+          if(e.key==='ArrowDown'){ e.preventDefault(); activate((idx+1)%featureButtons.length);}
+          if(e.key==='ArrowUp'){ e.preventDefault(); activate((idx-1+featureButtons.length)%featureButtons.length);}
+          if(e.key==='Home'){ e.preventDefault(); activate(0);}
+          if(e.key==='End'){ e.preventDefault(); activate(featureButtons.length-1);}
+          if(e.key==='Enter' || e.key===' '){ e.preventDefault(); activate(idx);}
         });
       });
       activate(0);
