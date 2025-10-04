@@ -2,7 +2,7 @@
 import heatmapImg from "../assets/features/heatmap.png";
 import footprintImg from "../assets/features/footprint.png";
 import panesImg from "../assets/features/panes.png";
-import tickSizeImg from "../assets/features/tick_size.png";
+import customizabilityImg from "../assets/features/customizability.png";
 import tradesTapeImg from "../assets/features/trades_tape.png";
 import screenerImg from "../assets/features/screener_ohlcv.png";
 import domImg from "../assets/features/dom.png";
@@ -37,11 +37,11 @@ const features: Feature[] = [
     caption: "Multiple synchronized analysis panes",
   },
   {
-    title: "Adaptive Aggregation",
+    title: "Customizability & Theming",
     description:
-      "Timeframe or trade‑count (tick) based aggregation for precise tempo control.",
-    img: tickSizeImg,
-    caption: "Adaptive timeframe & tick aggregation",
+      "Flexible layouts, per‑pane study configs and instant theme switching (dark, light or your own palette) so you tailor surfaces to your process.",
+    img: customizabilityImg,
+    caption: "Custom themes, layouts & study presets",
   },
 
   {
@@ -58,10 +58,10 @@ const features: Feature[] = [
     img: domImg,
   },
   {
-    title: "Low‑Latency Core",
+    title: "Low‑Latency & Lightweight Core",
     description:
-      "Fast, responsive core built in Rust with Iced so charts stay smooth even during heavy activity.",
-    caption: "Low-latency Rust + Iced pipeline",
+      "Fast, memory‑efficient core in Rust (Iced) so surfaces stay smooth during heavy bursts while remaining one of the lightest orderflow tools around.",
+    caption: "Lightweight low-latency Rust + Iced pipeline",
     img: tradesTapeImg,
   },
 ];
