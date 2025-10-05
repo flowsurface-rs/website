@@ -11,7 +11,11 @@ import Logo from "./Logo.astro";
   >
     <div>
       <div class="mb-3">
-        <a href="#top" aria-label="Flowsurface home" class="inline-flex items-center opacity-85 hover:opacity-100 transition-opacity">
+        <a
+          href="#top"
+          aria-label="Flowsurface home"
+          class="inline-flex items-center opacity-85 hover:opacity-100 transition-opacity"
+        >
           <Logo class="h-7" encased />
         </a>
       </div>
@@ -45,20 +49,32 @@ import Logo from "./Logo.astro";
       </p>
       <p class="m-0 text-[0.7rem] leading-[1.4]">
         <a
-          href="https://github.com/flowsurface-rs/flowsurface/issues/new/choose?utm_source=website&utm_medium=footer&utm_campaign=contact_link"
-          target="_blank"
-          rel="noopener"
-          class="text-text-secondary text-[0.75rem] tracking-wider no-underline hover:text-text-primary"
-          >Contact</a
-        >
-      </p>
-      <p class="m-0 text-[0.7rem] leading-[1.4]">
-        <a
           href="https://github.com/flowsurface-rs/website"
           target="_blank"
           rel="noopener"
           class="text-text-secondary text-[0.75rem] tracking-wider no-underline hover:text-text-primary"
           >Website GitHub Repository</a
+        >
+      </p>
+    </div>
+    <div>
+      <h3 class="text-[clamp(1.3rem,2.5vw,1.65rem)] font-semibold mb-3 text-sm">
+        Contact
+      </h3>
+      <p class="m-0 text-[0.7rem] leading-[1.4]">
+        <a
+          href="https://github.com/flowsurface-rs/flowsurface/issues/new"
+          target="_blank"
+          rel="noopener"
+          class="text-text-secondary text-[0.75rem] tracking-wider no-underline hover:text-text-primary"
+          >Report an Issue</a
+        >
+      </p>
+      <p class="m-0 text-[0.7rem] leading-[1.4]">
+        <a
+          href="mailto:akenshaw@pm.me?subject=Flowsurface%20Feedback"
+          class="text-text-secondary text-[0.75rem] tracking-wider no-underline hover:text-text-primary"
+          aria-label="Contact via email">Contact</a
         >
       </p>
     </div>
@@ -79,8 +95,14 @@ import Logo from "./Logo.astro";
   </div>
   <div class="w-full max-w-[1240px] mx-auto px-8 mt-10">
     <small class="text-text-secondary m-0 text-[0.7rem] leading-[1.4] block"
-      >© {new Date().getFullYear()} Flowsurface. Built with Rust & Iced. This site
-      uses Astro.<br />Not investment advice. Use at your own risk.</small
+      >© {new Date().getFullYear()} Flowsurface. Built with Rust & Iced. <br
+      />This website uses Astro, is deployed on Cloudflare and was built by <a
+        href="https://josedonato.com"
+        target="_blank"
+        rel="noopener"
+        class="underline decoration-dotted underline-offset-2 hover:text-text-primary"
+        >josedonato.com</a
+      >.<br />Not investment advice. Use at your own risk.</small
     >
   </div>
 </footer>
