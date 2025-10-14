@@ -30,7 +30,8 @@ import RegionalAccessCallout from "./RegionalAccessCallout.astro";
       >
         <a
           class="btn btn-primary"
-          href="https://github.com/flowsurface-rs/flowsurface/releases/download/v0.8.5/flowsurface-universal-macos.tar.gz"
+          href="#"
+          data-platform="macos"
           target="_blank"
           rel="noopener"
           ><svg
@@ -47,7 +48,8 @@ import RegionalAccessCallout from "./RegionalAccessCallout.astro";
         >
         <a
           class="btn btn-secondary"
-          href="https://github.com/flowsurface-rs/flowsurface/releases/download/v0.8.5/flowsurface-x86_64-windows.zip"
+          href="#"
+          data-platform="windows"
           target="_blank"
           rel="noopener"
           ><svg
@@ -64,7 +66,8 @@ import RegionalAccessCallout from "./RegionalAccessCallout.astro";
         >
         <a
           class="btn btn-secondary"
-          href="https://github.com/flowsurface-rs/flowsurface/releases/download/v0.8.5/flowsurface-x86_64-linux.tar.gz"
+          href="#"
+          data-platform="linux"
           target="_blank"
           rel="noopener"
           ><svg
@@ -134,3 +137,35 @@ import RegionalAccessCallout from "./RegionalAccessCallout.astro";
     </div>
   </div>
 </section>
+
+<script>
+  const FALLBACK_VERSION = 'v0.8.5';
+  const PLATFORM_FILES = {
+    macos: 'flowsurface-universal-macos.tar.gz',
+    windows: 'flowsurface-x86_64-windows.zip',
+    linux: 'flowsurface-x86_64-linux.tar.gz'
+  };
+
+  async function fetchVersion() {
+    try {
+      const response = await fetch('/api/latest-release.json');
+      const data = await response.json();
+      return data.version || FALLBACK_VERSION;
+    } catch (error) {
+      console.error('Failed to fetch version:', error);
+      return FALLBACK_VERSION;
+    }
+  }
+
+  function updateDownloadLinks(version: string) {
+    const links = document.querySelectorAll<HTMLAnchorElement>('a[data-platform]');
+    links.forEach(link => {
+      const platform = link.dataset.platform as keyof typeof PLATFORM_FILES;
+      if (platform && PLATFORM_FILES[platform]) {
+        link.href = `https://github.com/flowsurface-rs/flowsurface/releases/download/${version}/${PLATFORM_FILES[platform]}`;
+      }
+    });
+  }
+
+  fetchVersion().then(updateDownloadLinks);
+</script>
